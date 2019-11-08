@@ -4,7 +4,6 @@ namespace Core\Helper;
 
 class Common 
 {
-
   function isPost() {
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
       return true;
@@ -24,6 +23,6 @@ class Common
       $pathUrl = substr($pathUrl, 0, $position);
     }
 
-    return $pathUrl;
+    return rtrim($pathUrl, '/');
   }
 }

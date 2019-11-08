@@ -9,7 +9,8 @@
     "autoload": {
       "psr-4": {
         "Core\\": "core",
-        "Client\\": "client"
+        "Client\\": "client",
+        "Admin\\": "admin"
       }
     },
     "require": {}

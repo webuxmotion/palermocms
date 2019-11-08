@@ -7,17 +7,45 @@ class Router
   private $routes = [];
   private $dispatcher;
   private $host;
+  private $envs = [];
+  private $pattern_path = null;
 
   public function __construct($host) {
     $this->host = $host;
   }
 
   public function add($key, $pattern, $controller, $method = 'GET') {
+    $pattern_prefix = $this->pattern_prefix ? $this->pattern_prefix : null;
+    $pattern = $pattern != '/' ? $pattern : null; 
+
     $this->routes[$key] = [
-      'pattern' => $pattern,
+      'pattern' => $pattern_prefix . $pattern,
       'controller' => $controller,
-      'method' => $method
+      'method' => $method,
     ];
+  }
+
+  public function setEnvironments($envs) {
+    $this->envs = $envs;
+  }
+
+  public function getEnv($uri) {
+    if ($uri == '/') {
+      return $this->envs['/'];
+    }
+
+    foreach ($this->envs as $path => $env) {
+      if ($path !== '/') {
+        $pos = strpos($uri, $path);
+
+        if ($pos === 0) {
+          $this->pattern_prefix = $path;
+          return $env;
+        }
+      }
+    }
+
+    return $this->envs['/'];
   }
 
   public function dispatch($method, $uri) {
