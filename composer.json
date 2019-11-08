@@ -1,0 +1,16 @@
+{
+    "name": "andriipereverziev/palermocms",
+    "authors": [
+        {
+            "name": "Andrey Pereverzev",
+            "email": "pereverziev.andrii@gmail.com"
+        }
+    ],
+    "autoload": {
+      "psr-4": {
+        "Core\\": "core",
+        "Client\\": "client"
+      }
+    },
+    "require": {}
+}
