@@ -22,12 +22,11 @@ class Starter
       $this->router->setEnvironments([
         '/' => 'client',
         '/backend' => 'admin',
-        '/crm' => 'crm',
       ]);
 
       $env = $this->router->getEnv(Common::getPathUrl());
 
-      require ROOT . '/' . $env. '/routes.php';
+      require ROOT . '/env/' . $env. '/routes.php';
       
       $routerDispatch = $this->router->dispatch(Common::getMethod(), Common::getPathUrl());
 

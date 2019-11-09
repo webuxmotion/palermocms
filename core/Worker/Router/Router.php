@@ -30,17 +30,34 @@ class Router
   }
 
   public function getEnv($uri) {
+
     if ($uri == '/') {
       return $this->envs['/'];
     }
 
+    $uri_len = strlen($uri);
+
     foreach ($this->envs as $path => $env) {
       if ($path !== '/') {
-        $pos = strpos($uri, $path);
+        $path_len = strlen($path);
 
-        if ($pos === 0) {
-          $this->pattern_prefix = $path;
-          return $env;
+        if ($uri_len > $path_len) {
+          if ($uri[$path_len] == '/') {
+            $pos = strpos($uri, $path);
+
+            if ($pos === 0) {
+              $this->pattern_prefix = $path;
+              return $env;
+            }
+          }
+        }
+        else {
+          $pos = strpos($uri, $path);
+
+          if ($pos === 0) {
+            $this->pattern_prefix = $path;
+            return $env;
+          }
         }
       }
     }
