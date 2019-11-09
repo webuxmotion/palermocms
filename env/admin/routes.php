@@ -1,4 +1,4 @@
 <?php
 
-$this->router->add('home', '/', 'HomeController:dashboard');
-$this->router->add('login', '/login', 'HomeController:login');
+$this->router->add('home', '/', 'DashboardController:index');
+$this->router->add('login', '/login', 'LoginController:index');

@@ -29,14 +29,9 @@ class Starter
 
   public function loadRoutes() {
 
-      $this->router->setEnvironments([
-        '/' => 'client',
-        '/backend' => 'admin',
-      ]);
+      $this->router->setPrefix(PREFIX);
 
-      $env = $this->router->getEnv(Common::getPathUrl());
-
-      require ROOT . '/env/' . $env. '/routes.php';
+      require ROOT . '/env/' . ENV . '/routes.php';
       
       $routerDispatch = $this->router->dispatch(Common::getMethod(), Common::getPathUrl());
 
@@ -46,7 +41,7 @@ class Starter
 
       list($class, $action) = explode(':', $routerDispatch->getController(), 2);
 
-      $controller = '\\' . ucfirst($env) . '\\Controller\\' . $class;
+      $controller = '\\' . ucfirst(ENV) . '\\Controller\\' . $class;
       $parameters = $routerDispatch->getParameters();
 
       call_user_func_array([new $controller($this->di), $action], $parameters);

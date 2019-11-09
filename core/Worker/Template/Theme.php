@@ -44,7 +44,7 @@ class Theme
   }
 
   private function loadTemplateFile($nameFile, $data = []) {
-    $templateFile = ROOT . '/env/client/themes/default/' . $nameFile . '.php';
+    $templateFile = ROOT . '/env/' . ENV . '/themes/default/' . $nameFile . '.php';
 
     if (is_file($templateFile)) {
       extract($this->data);

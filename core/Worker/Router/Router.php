@@ -8,7 +8,7 @@ class Router
   private $dispatcher;
   private $host;
   private $envs = [];
-  private $pattern_path = null;
+  private $pattern_prefix = null;
 
   public function __construct($host) {
     $this->host = $host;
@@ -25,44 +25,8 @@ class Router
     ];
   }
 
-  public function setEnvironments($envs) {
-    $this->envs = $envs;
-  }
-
-  public function getEnv($uri) {
-
-    if ($uri == '/') {
-      return $this->envs['/'];
-    }
-
-    $uri_len = strlen($uri);
-
-    foreach ($this->envs as $path => $env) {
-      if ($path !== '/') {
-        $path_len = strlen($path);
-
-        if ($uri_len > $path_len) {
-          if ($uri[$path_len] == '/') {
-            $pos = strpos($uri, $path);
-
-            if ($pos === 0) {
-              $this->pattern_prefix = $path;
-              return $env;
-            }
-          }
-        }
-        else {
-          $pos = strpos($uri, $path);
-
-          if ($pos === 0) {
-            $this->pattern_prefix = $path;
-            return $env;
-          }
-        }
-      }
-    }
-
-    return $this->envs['/'];
+  public function setPrefix($prefix) {
+    $this->pattern_prefix = $prefix;
   }
 
   public function dispatch($method, $uri) {
