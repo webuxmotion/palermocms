@@ -19,6 +19,16 @@ class Starter
   public function run() {
     try {
 
+      $this->loadRoutes();
+
+    } catch (\Exception $e) {
+      echo $e->getMessage();
+      exit;
+    }
+  }
+
+  public function loadRoutes() {
+
       $this->router->setEnvironments([
         '/' => 'client',
         '/backend' => 'admin',
@@ -40,10 +50,5 @@ class Starter
       $parameters = $routerDispatch->getParameters();
 
       call_user_func_array([new $controller($this->di), $action], $parameters);
-
-    } catch (\Exception $e) {
-      echo $e->getMessage();
-      exit;
-    }
   }
 }

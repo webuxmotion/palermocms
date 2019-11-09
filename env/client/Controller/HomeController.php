@@ -5,6 +5,10 @@ namespace Client\Controller;
 class HomeController extends MainController
 {
   public function index() {
-    echo 'Index page';
+    $data = [
+      'name' => 'Andrii'
+    ];
+
+    $this->view->render('index', $data);
   }
 }
