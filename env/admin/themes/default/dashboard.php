@@ -58,6 +58,7 @@
         }
     </style>
     <link href="style.css" rel="stylesheet">
+    <link href="my.css" rel="stylesheet">
 </head>
 
 <body class="app">
@@ -81,7 +82,7 @@
                             <a class="sidebar-link td-n" href="/backend">
                                 <div class="peers ai-c fxw-nw">
                                     <div class="peer">
-                                        <div class="logo"><img src="assets/static/images/logo.png" alt=""></div>
+                                        <div class="logo flex-center"><img style="width: 50px;" src="assets/static/images/logo.png" alt=""></div>
                                     </div>
                                     <div class="peer peer-greed">
                                         <h5 class="lh-1 mB-0 logo-text">PalermoCMS</h5></div>
