@@ -3,11 +3,14 @@
 namespace Core;
 
 use Core\Helper\Common;
+use Core\Worker\ErrorHandler\ErrorHandler;
 
 require_once __DIR__ . '/../vendor/autoload.php';
 require_once __DIR__ . '/functions.php';
 
 try {
+
+  new ErrorHandler();
 
   $envs = [
     '/' => 'client',

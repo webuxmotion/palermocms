@@ -4,7 +4,7 @@ namespace Core\Helper;
 
 class Common 
 {
-  function isPost() {
+  public static function isPost() {
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
       return true;
     }
@@ -12,11 +12,11 @@ class Common
     return false;
   }
 
-  function getMethod() {
+  public static function getMethod() {
     return $_SERVER['REQUEST_METHOD'];
   }
 
-  function getPathUrl() {
+  public static function getPathUrl() {
     $pathUrl = $_SERVER['REQUEST_URI'];
 
     if ($position = strpos($pathUrl, '?')) {

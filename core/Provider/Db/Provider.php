@@ -18,7 +18,7 @@ class Provider extends AbstractProvider
       'password' => 'palermocmspass',
       'charset' => 'utf8'
     ];
-
+/*
     $config = [
       'host' => 'localhost',
       'db_name' => 'palermocms_db',
@@ -26,6 +26,7 @@ class Provider extends AbstractProvider
       'password' => '1111',
       'charset' => 'utf8'
     ];
+ */
 
     $provider = new Connection($config);
     $this->di->set($this->providerName, $provider);
