@@ -9,8 +9,10 @@ require_once __DIR__ . '/../vendor/autoload.php';
 require_once __DIR__ . '/functions.php';
 
 try {
-
+  session_start();
   new ErrorHandler();
+
+  class_alias('\RedBeanPHP\R', '\R');
 
   $envs = [
     '/' => 'client',

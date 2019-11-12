@@ -3,20 +3,15 @@
 namespace Admin\Controller;
 
 use Core\Controller;
-use Core\Worker\Auth\Auth;
+use Admin\Model\User;
 
 class AdminProtectController extends Controller
 {
-  protected $auth;
-
   public function __construct($di) {
     parent::__construct($di);
 
-    $this->auth = new Auth();
-
-    if (!$this->auth->authorized) {
-      header('Location: /backend/login');
-      exit;
+    if (!User::isAdmin()) {
+      redirect(ADMIN . '/login');
     }
   }
 }

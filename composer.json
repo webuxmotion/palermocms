@@ -13,5 +13,7 @@
         "Admin\\": "env/admin"
       }
     },
-    "require": {}
+    "require": {
+      "gabordemooij/redbean": "dev-master"
+    }
 }

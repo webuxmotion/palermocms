@@ -81,14 +81,15 @@
         </div>
         <div class="col-12 col-md-4 peer pX-40 pY-80 h-100 bgc-white scrollable pos-r" style="min-width:320px">
             <h4 class="fw-300 c-grey-900 mB-40">Login</h4>
-            <form>
+            <form action="<?=ADMIN?>/login" method="post">
+
                 <div class="form-group">
-                    <label class="text-normal text-dark">Username</label>
-                    <input type="email" class="form-control" placeholder="John Doe">
+                    <label class="text-normal text-dark">Login</label>
+                    <input type="text" name="login" class="form-control" placeholder="login">
                 </div>
                 <div class="form-group">
                     <label class="text-normal text-dark">Password</label>
-                    <input type="password" class="form-control" placeholder="Password">
+                    <input type="password" name="password" class="form-control" placeholder="Password">
                 </div>
                 <div class="form-group">
                     <div class="peers ai-c jc-sb fxw-nw">
@@ -99,7 +100,7 @@
                             </div>
                         </div>
                         <div class="peer">
-                            <button class="btn btn-primary">Login</button>
+                            <button type="submit" class="btn btn-primary">Login</button>
                         </div>
                     </div>
                 </div>
