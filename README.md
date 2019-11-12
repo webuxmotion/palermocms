@@ -23,3 +23,10 @@ You can use phpmyadmin by link - [http://localhost:50002](http://localhost:50002
 
 Login - palermocmsuser</br>
 Password - palermocmspass
+
+# Webpack links
+
+This is the source of webpack config
+
+- [Простой статический сайт на Webpack 4](https://habr.com/ru/post/350886/)
+- [static-site-webpack-habr](https://github.com/Harrix/static-site-webpack-habr)
