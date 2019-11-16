@@ -18,7 +18,7 @@ class Theme
     $file = 'header';
 
     if ($name !== '') {
-      $file = sprintf(self::RULES_NAME_FILE['header'], $name);
+      $file = $name;
     }
 
     $this->loadTemplateFile($file);
@@ -29,7 +29,7 @@ class Theme
     $file = 'footer';
 
     if ($name !== '') {
-      $file = sprintf(self::RULES_NAME_FILE['footer'], $name);
+      $file = $name;
     }
 
     $this->loadTemplateFile($file);

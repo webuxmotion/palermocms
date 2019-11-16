@@ -7,9 +7,15 @@ use Core\Worker\Template\Theme;
 class View 
 {
   protected $theme;
+  public $layout = null;
 
   public function __construct() {
     $this->theme = new Theme();
+  }
+
+  public function setLayout($name) {
+    $this->layout = $name;
+    return $this;
   }
 
   public function render($template, $vars = []) {
@@ -29,11 +35,23 @@ class View
 
     try {
       require $templatePath;
+      $content = ob_get_clean();
     } catch (\Exception $e) {
       ob_end_clean();
       throw $e;
     }
 
-    echo ob_get_clean();
+
+    if (null !== $this->layout) {
+      $layoutFile = ROOT . "/env/" . ENV . "/themes/default/layouts/{$this->layout}.php";
+
+      if (is_file($layoutFile)) {
+        require $layoutFile;
+      } else {
+        throw new \Exception("Layout $layoutFile not found", 500);
+      }
+    } else {
+      echo $content;
+    }
   }
 }

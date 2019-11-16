@@ -7,7 +7,7 @@ use Admin\Model\User;
 class LoginController extends MainController
 {
   public function index() {
-    $this->view->render('login');
+    $this->view->render('pages/login');
   }
 
   public function login() {

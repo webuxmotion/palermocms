@@ -50,3 +50,13 @@
 ===========
 [2019-11-16 07:11:49] Error text: SQLSTATE[HY000] [2002] php_network_getaddresses: getaddrinfo failed: No such host is known.  | File: C:\Users\38095\Projects\palermocms\core\Worker\Db\Connection.php | String number: 18
 ===========
+[2019-11-16 14:51:30] Error text: View  not found | File: /var/www/html/core/Worker/Template/View.php | String number: 13
+===========
+[2019-11-16 15:12:28] Error text: Call to undefined method Core\Worker\Template\Theme::setLayout() | File: /var/www/html/env/client/themes/default/pages/index.php | String number: 2
+===========
+[2019-11-16 15:12:37] Error text: Call to undefined method Core\Worker\Template\Theme::setLayout() | File: /var/www/html/env/client/themes/default/pages/index.php | String number: 2
+===========
+[2019-11-16 15:13:15] Error text: Call to undefined method Core\Worker\Template\View::block() | File: /var/www/html/env/client/themes/default/pages/index.php | String number: 2
+===========
+[2019-11-16 15:13:18] Error text: Call to undefined method Core\Worker\Template\View::block() | File: /var/www/html/env/client/themes/default/pages/index.php | String number: 2
+===========

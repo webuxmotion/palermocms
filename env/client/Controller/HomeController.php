@@ -9,6 +9,6 @@ class HomeController extends MainController
       'name' => $this->config['main']['title']
     ];
 
-    $this->view->render('index', $data);
+    $this->view->setLayout('default')->render('pages/index', $data);
   }
 }
