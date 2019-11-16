@@ -1,26 +1,46 @@
-// import jQuery from "jquery";
-// import popper from "popper.js";
-// import bootstrap from "bootstrap";
+import * as PIXI from 'pixi.js';
+import Particle from './Particle';
 
-// jQuery(function() {
-//   jQuery("body").css("color", "blue");
-// });
-import { circle, square, rect } from './shapes';
-import { areaCalculator } from './areaCalculator';
-import { areaOputter } from './areaOputter';
+class ParticleText {
+    constructor() {
+        this.mouse = null;
+        this.particleSize = 10;
+        this.particles = [];
+
+        this.app = new PIXI.Application({ resizeTo: window });
+        document.body.appendChild(this.app.view);
 
 
-const shapes = [
-    circle(0.5),
-    square(5),
-    rect(10, 5),
-    square(7)
-];
-  
-  const areas = areaCalculator(shapes);
-  const output = areaOputter(areas);
-  
-  console.log(output.JSON());
 
-console.log('testtddfddft');
-console.log('test');
+        this.addObjects();
+    }
+
+    addObjects() {
+        this.app.loader.add('bg', '/client/bg.jpg').load((loader, resources) => {
+
+            for (let i = 0; i < 50; i++) {
+                for (let j = 0; j < 50; j++) {
+                    // i, j, size
+                    let p = new Particle(i*this.particleSize, j*this.particleSize, resources.bg.texture, this.particleSize);
+                    this.particles.push(p);
+                    this.app.stage.addChild(p.sprite);
+                }
+            }
+
+            this.animate();
+        });
+    }
+
+    animate() {
+        this.app.ticker.add(() => {
+
+            this.mouse = this.app.renderer.plugins.interaction.mouse.global;
+
+            this.particles.forEach(p => {
+                p.update(this.mouse);
+            })
+        });
+    }
+}
+
+let PT = new ParticleText();
