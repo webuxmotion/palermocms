@@ -17,9 +17,8 @@ export default class Particle {
         this.radius = 100;
 
         this.friction = 0.9;
-
-        this.dirX = Math.random() - 0.5;
-        this.dirY = Math.random() - 0.5;
+        this.gravity = 0.01;
+        this.maxGravity = 0.01 + Math.random() * 0.03;
     }
 
     update(mouse) {
@@ -31,15 +30,27 @@ export default class Particle {
         let normalX = distanceX/distance;
         let normalY = distanceY/distance;
 
+        // mouse interaction
         if (distance < this.radius) {
-            this.speedX += normalX;
-            this.speedY += normalY;
-
-
+            this.gravity *= this.friction;
+            this.speedX -= normalX;
+            this.speedY -= normalY;
+        } else {
+            this.gravity += 0.1*(this.maxGravity - this.gravity);
         }
 
-        this.sprite.x -= this.speedX;
-        this.sprite.y -= this.speedY;
+        // back home
+        let oDistX = this.x - this.sprite.x;
+        let oDistY = this.y - this.sprite.y;
+
+        this.speedX += oDistX*this.gravity;
+        this.speedY += oDistY*this.gravity;
+
+        this.speedX *= this.friction;
+        this.speedY *= this.friction;
+
+        this.sprite.x += this.speedX;
+        this.sprite.y += this.speedY;
 
     }
 }

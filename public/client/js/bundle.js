@@ -46537,9 +46537,8 @@ class Particle {
         this.radius = 100;
 
         this.friction = 0.9;
-
-        this.dirX = Math.random() - 0.5;
-        this.dirY = Math.random() - 0.5;
+        this.gravity = 0.01;
+        this.maxGravity = 0.01 + Math.random() * 0.03;
     }
 
     update(mouse) {
@@ -46551,15 +46550,27 @@ class Particle {
         let normalX = distanceX/distance;
         let normalY = distanceY/distance;
 
+        // mouse interaction
         if (distance < this.radius) {
-            this.speedX += normalX;
-            this.speedY += normalY;
-
-
+            this.gravity *= this.friction;
+            this.speedX -= normalX;
+            this.speedY -= normalY;
+        } else {
+            this.gravity += 0.1*(this.maxGravity - this.gravity);
         }
 
-        this.sprite.x -= this.speedX;
-        this.sprite.y -= this.speedY;
+        // back home
+        let oDistX = this.x - this.sprite.x;
+        let oDistY = this.y - this.sprite.y;
+
+        this.speedX += oDistX*this.gravity;
+        this.speedY += oDistY*this.gravity;
+
+        this.speedX *= this.friction;
+        this.speedY *= this.friction;
+
+        this.sprite.x += this.speedX;
+        this.sprite.y += this.speedY;
 
     }
 }
@@ -46583,26 +46594,35 @@ __webpack_require__.r(__webpack_exports__);
 class ParticleText {
     constructor() {
         this.mouse = null;
-        this.particleSize = 10;
+        this.particleSize = 2;
+        this.rows = 200;
+        this.cols = 500;
+
+
         this.particles = [];
 
         this.app = new pixi_js__WEBPACK_IMPORTED_MODULE_0__["Application"]({ resizeTo: window });
         document.body.appendChild(this.app.view);
 
+        this.container = new pixi_js__WEBPACK_IMPORTED_MODULE_0__["ParticleContainer"](100000);
+        this.app.stage.addChild(this.container);
 
 
         this.addObjects();
     }
 
     addObjects() {
-        this.app.loader.add('bg', '/client/bg.jpg').load((loader, resources) => {
+        this.app.loader.add('bg', '/client/perever-group.png').load((loader, resources) => {
 
-            for (let i = 0; i < 50; i++) {
-                for (let j = 0; j < 50; j++) {
-                    // i, j, size
-                    let p = new _Particle__WEBPACK_IMPORTED_MODULE_1__["default"](i*this.particleSize, j*this.particleSize, resources.bg.texture, this.particleSize);
-                    this.particles.push(p);
-                    this.app.stage.addChild(p.sprite);
+            const ctx = this.getContext(resources);
+
+            for (let i = 0; i < this.cols; i++) {
+                for (let j = 0; j < this.rows; j++) {
+                    if (this.hasFill(i*this.particleSize, j*this.particleSize, ctx)) {
+                        let p = new _Particle__WEBPACK_IMPORTED_MODULE_1__["default"](i*this.particleSize, j*this.particleSize, resources.bg.texture, this.particleSize);
+                        this.particles.push(p);
+                        this.container.addChild(p.sprite);
+                    }
                 }
             }
 
@@ -46619,6 +46639,27 @@ class ParticleText {
                 p.update(this.mouse);
             })
         });
+    }
+
+    getContext(resources) {
+        const canvas = document.createElement('canvas');
+        document.body.appendChild(canvas);
+        const ctx = canvas.getContext('2d');
+        canvas.width = this.cols * this.particleSize;
+        canvas.height = this.rows * this.particleSize;
+        canvas.style.display = 'none';
+        ctx.drawImage(resources.bg.data, 0, 0);
+
+        return ctx;
+    }
+
+    hasFill(x, y, ctx) {
+        for (let i = 0; i < this.particleSize; i++) {
+            for (let j = 0; j < this.particleSize; j++) {
+                if (ctx.getImageData(x + i, y + i, 1, 1).data[0] > 0) return true;
+            }
+        }
+        return false;
     }
 }
 
