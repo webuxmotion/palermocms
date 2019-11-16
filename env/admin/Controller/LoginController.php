@@ -24,4 +24,9 @@ class LoginController extends MainController
         redirect();
     } 
   }
+
+  public function logout() {
+    if (isset($_SESSION['user'])) unset($_SESSION['user']);
+    redirect();
+  }
 }

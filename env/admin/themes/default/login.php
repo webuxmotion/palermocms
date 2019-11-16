@@ -61,6 +61,8 @@
 </head>
 
 <body class="app">
+    
+    <?=$this->theme->block('shared/sessionErrors');?>
     <div id="loader">
         <div class="spinner"></div>
     </div>
