@@ -1,26 +1,27 @@
-// import jQuery from "jquery";
-// import popper from "popper.js";
-// import bootstrap from "bootstrap";
+import jQuery from "jquery";
+import { TimelineMax } from 'gsap';
 
-// jQuery(function() {
-//   jQuery("body").css("color", "blue");
-// });
-import { circle, square, rect } from './shapes';
-import { areaCalculator } from './areaCalculator';
-import { areaOputter } from './areaOputter';
+let tl = new TimelineMax();
+let $ = jQuery;
 
-
-const shapes = [
-    circle(0.5),
-    square(5),
-    rect(10, 5),
-    square(7)
-];
-  
-  const areas = areaCalculator(shapes);
-  const output = areaOputter(areas);
-  
-  console.log(output.JSON());
-
-console.log('testtddfddft');
-console.log('test');
+tl
+    .from( $('.c-hero__letter-2'), 1, {
+        y: -60
+    })
+    .from( $('.c-hero__letter-3'), 1, {
+        rotation: 18,
+        transformOrigin: "100% 50%"
+    }, "-=0.8")
+    .from( $('.c-hero__letter-4'), 1.4, {
+        y: "100%"
+    }, "-=1.6")
+    .from( $('.c-hero__letter-5'), 1, {
+        rotation: 18,
+        transformOrigin: "0% 50%"
+    }, "-=0.8")
+    .from( $('.c-hero__letter-6'), 1.4, {
+        x: 200
+    }, "-=1.3")
+    .from( $('.c-hero__letter-7'), 1.4, {
+        attr:{r:0}
+    }, "-=0.8");

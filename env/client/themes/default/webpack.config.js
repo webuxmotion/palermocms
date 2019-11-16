@@ -11,7 +11,7 @@ const config = {
     filename: "./../../../../../public/client/js/bundle.js",
   },
   devtool: "source-map",
-  mode: "production",
+  mode: "development",
   optimization: {
     minimizer: [
       new TerserPlugin({
@@ -75,7 +75,7 @@ const config = {
 
 module.exports = (env, argv) => {
   if (argv.mode === "production") {
-    config.plugins.push(new CleanWebpackPlugin());
+    //config.plugins.push(new CleanWebpackPlugin());
   }
   return config;
 };

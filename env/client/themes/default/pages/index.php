@@ -1,3 +1,3 @@
-<?=$this->theme->block('parts/button', ['title' => 'button']);?>
-hello! My name is <?=$name?>
-<a href="/backend">Backend</a>
+<div class="c-hero">
+    <?=$this->theme->block('parts/svg-logo');?>
+</div>
