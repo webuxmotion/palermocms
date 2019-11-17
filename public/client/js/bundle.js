@@ -86,77 +86,40 @@
 /************************************************************************/
 /******/ ({
 
-/***/ "./src/js/areaCalculator.js":
-/*!**********************************!*\
-  !*** ./src/js/areaCalculator.js ***!
-  \**********************************/
-/*! exports provided: areaCalculator */
+/***/ "./src/js/bg-canvas.js":
+/*!*****************************!*\
+  !*** ./src/js/bg-canvas.js ***!
+  \*****************************/
+/*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "areaCalculator", function() { return areaCalculator; });
-const areaCalculator = (s) => {
-    const proto = {
-      sum() {
-        let sum = 0;
-  
-        s.forEach(el => {
-          switch (el.type) {
-            case 'Circle':
-              sum += Math.PI * (+el.radius * +el.radius);
-              break;
-            case 'Square':
-              sum += +el.length * +el.length;
-              break;
-            case 'Rect':
-              sum += el.a * el.b;
-              break;
-            default:
-              console.log(`Add case for type ${el.type}`);
-          }
-        });
-  
-        return sum;
-      }
-    }
-    return Object.assign(Object.create(proto), {shapes: s})
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return BgCanvas; });
+class BgCanvas {
+  constructor(offset, size = 500) {
+    this.offset = offset;
+    this.canvas = document.createElement('canvas');
+    document.body.appendChild(this.canvas);
+    this.ctx = this.canvas.getContext('2d');
+    this.canvas.width = window.innerWidth;
+    this.canvas.height = window.innerHeight;
+
+    this.imgSize = size;
+
+    this.drawCoords();
   }
 
-/***/ }),
-
-/***/ "./src/js/areaOputter.js":
-/*!*******************************!*\
-  !*** ./src/js/areaOputter.js ***!
-  \*******************************/
-/*! exports provided: areaOputter */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "areaOputter", function() { return areaOputter; });
-const areaOputter = (areas) => {
-    const proto = {
-  
-      JSON() {
-        const res = {
-          'sum': this.areas.sum()
-        };
-        return res;
-      },
-  
-      HTML(container) {
-        const res = `<h2>Total area of the shapes: ${this.areas.sum()}</h2>`;
-        container.innerHTML = res;
-      },
-  
-      ALERT() {
-        const res = `Total area of the shapes: ${this.areas.sum()}`;
-        alert(res);
-      }
-    }
-    return Object.assign(Object.create(proto), {areas: areas})
+  getCtx() {
+    return this.ctx;
   }
+
+  drawCoords() {
+    this.ctx.beginPath();
+    this.ctx.rect(this.offset, this.offset, this.imgSize, this.imgSize);
+    this.ctx.stroke();
+  }
+}
 
 /***/ }),
 
@@ -169,68 +132,51 @@ const areaOputter = (areas) => {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _shapes__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./shapes */ "./src/js/shapes.js");
-/* harmony import */ var _areaCalculator__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./areaCalculator */ "./src/js/areaCalculator.js");
-/* harmony import */ var _areaOputter__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./areaOputter */ "./src/js/areaOputter.js");
-// import jQuery from "jquery";
-// import popper from "popper.js";
-// import bootstrap from "bootstrap";
-
-// jQuery(function() {
-//   jQuery("body").css("color", "blue");
-// });
+/* harmony import */ var _bg_canvas__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./bg-canvas */ "./src/js/bg-canvas.js");
 
 
+const offset = 40;
+const size = 600;
+
+const bg = new _bg_canvas__WEBPACK_IMPORTED_MODULE_0__["default"](offset, size);
+
+const canvas = document.createElement('canvas');
+document.body.appendChild(canvas);
+const ctx = canvas.getContext('2d');
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
 
 
+function animate({timing, draw, duration}) {
+    let start = performance.now();
 
-const shapes = [
-    Object(_shapes__WEBPACK_IMPORTED_MODULE_0__["circle"])(0.5),
-    Object(_shapes__WEBPACK_IMPORTED_MODULE_0__["square"])(5),
-    Object(_shapes__WEBPACK_IMPORTED_MODULE_0__["rect"])(10, 5),
-    Object(_shapes__WEBPACK_IMPORTED_MODULE_0__["square"])(7)
-];
-  
-  const areas = Object(_areaCalculator__WEBPACK_IMPORTED_MODULE_1__["areaCalculator"])(shapes);
-  const output = Object(_areaOputter__WEBPACK_IMPORTED_MODULE_2__["areaOputter"])(areas);
-  
-  console.log(output.JSON());
+    requestAnimationFrame(function anim(time) {
+        let timeFraction = (time - start) / duration;
+        if (timeFraction > 1) timeFraction = 1;
 
-console.log('testtddfddft');
-console.log('test');
+        let progress = timing(timeFraction);
 
-/***/ }),
+        draw(progress, timeFraction);
 
-/***/ "./src/js/shapes.js":
-/*!**************************!*\
-  !*** ./src/js/shapes.js ***!
-  \**************************/
-/*! exports provided: circle, square, rect */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+        if (timeFraction < 1) {
+            requestAnimationFrame(anim);
+        }
+    });
+}
 
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "circle", function() { return circle; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "square", function() { return square; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "rect", function() { return rect; });
-const circle = (radius) => {
-    const proto = {
-      type: 'Circle'
+animate({
+    duration: 300,
+    timing(timeFraction) {
+        return timeFraction**3;
+    },
+    draw(progress, timeFraction) {
+        console.log(timeFraction);
+        timeFraction = timeFraction < 0 ? 0 : timeFraction;
+        ctx.beginPath();
+        ctx.rect(offset + size * timeFraction, size + offset - progress * size, 1, 1);
+        ctx.stroke();
     }
-    return Object.assign(Object.create(proto), {radius})
-  }
-  const square = (length) => {
-    const proto = {
-      type: 'Square'
-    }
-    return Object.assign(Object.create(proto), {length})
-  }
-  const rect = (a, b) => {
-    const proto = {
-      type: 'Rect'
-    }
-    return Object.assign(Object.create(proto), {a, b})
-  }
+});
 
 /***/ }),
 
