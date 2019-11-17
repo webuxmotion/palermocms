@@ -1,0 +1,41 @@
+.hero {
+    background-color: #36373f;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+    height: 100vh;
+    padding-top: 200px;
+    color: white;
+    text-align: center;
+    font-size: 16px;
+    box-sizing: border-box;
+
+    &__title {
+        font-size: 80px;
+        color: $primary;
+        padding-bottom: 30px;
+
+        .letter {
+            display: inline-block;
+            min-width: .3em;
+        }
+    }
+
+    p {
+        max-width: 430px;
+        margin: 0 auto;
+    }
+
+    &__action {
+        text-align: center;
+        padding-top: 120px;
+    }
+
+    &__start {
+        text-transform: uppercase;
+        padding: 0 15px 8px 15px;
+        border-bottom: 2px solid $primary;
+        color: white;
+        text-decoration: none;
+    }
+}

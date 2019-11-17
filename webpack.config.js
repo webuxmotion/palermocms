@@ -19,6 +19,9 @@ module.exports = {
 
         'animation-pixi': defaultTheme + './pages/animation/pixi/js/index.js',
         'styles-animation-pixi': defaultTheme + './pages/animation/pixi/scss/styles.scss',
+        
+        'animation-space': defaultTheme + './pages/animation/space/js/index.js',
+        'styles-animation-space': defaultTheme + './pages/animation/space/scss/styles.scss',
     },
     output: {
         filename: '[name].js',
@@ -35,6 +38,10 @@ module.exports = {
             {
                 from: defaultTheme + "./pages/animation/pixi/img",
                 to: "./../img/animation/pixi",
+            },
+            {
+                from: defaultTheme + "./pages/animation/space/img",
+                to: "./../img/animation/space",
             },
         ]),
 

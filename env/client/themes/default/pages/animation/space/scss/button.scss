@@ -1,0 +1,22 @@
+.button {
+    height: 35px;
+    display: inline-block;
+    line-height: 35px;
+    background-color: transparent;
+    border: none;
+    font-size: 14px;
+    padding: 0;
+
+    &_type_explore {
+        border: 1px solid #abaeb7;
+        border-radius: 10px;
+        cursor: pointer;
+        padding: 0 14px;
+        color: #abaeb7;
+
+        &:hover {
+            color: white;
+            border-color: white;
+        }
+    }
+}

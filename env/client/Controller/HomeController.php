@@ -5,14 +5,10 @@ namespace Client\Controller;
 class HomeController extends MainController
 {
   public function index() {
-    $data = [
-      'name' => $this->config['main']['title']
-    ];
-
     $this->view
-      ->css(['styles-index'])
-      ->js(['main'])
-      ->render('pages/index/index', $data);
+      ->css(['styles-animation-space'])
+      ->js(['animation-space'])
+      ->render('pages/animation/space/index');
   }
 
   public function about() {
