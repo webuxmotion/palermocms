@@ -74,3 +74,7 @@
 ===========
 [2019-11-17 06:24:13] Error text: Call to undefined method Core\Worker\Template\View::js() | File: /var/www/html/env/client/Controller/HomeController.php | String number: 14
 ===========
+[2019-11-17 06:36:46] Error text: Class '\Client\Controller\AnimationController' not found | File: /var/www/html/core/Starter.php | String number: 47
+===========
+[2019-11-17 06:36:47] Error text: Class '\Client\Controller\AnimationController' not found | File: /var/www/html/core/Starter.php | String number: 47
+===========

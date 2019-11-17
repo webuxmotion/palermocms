@@ -8,7 +8,10 @@ module.exports = {
     entry: {
         main: './js/pages/index/index.js',
         about: './js/pages/about/about.js',
-        'styles-index': './scss/pages/index/index.scss'
+        'styles-index': './scss/pages/index/index.scss',
+
+        'animation-perever': './js/pages/animation/perever/index.js',
+        'styles-animation-perever': './scss/pages/animation/perever/index.scss',
     },
     output: {
         filename: '[name].js',

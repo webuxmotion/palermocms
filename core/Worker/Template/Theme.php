@@ -80,7 +80,7 @@ class Theme
     $res = '';
 
     foreach ($this->css as $item) {
-      $res .= '<link rel="stylesheet" href="' . ENV . '/css/' . $item . '.css" />';
+      $res .= '<link rel="stylesheet" href="/' . ENV . '/css/' . $item . '.css" />';
     }
 
     return $res;

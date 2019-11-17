@@ -7,3 +7,4 @@ $this->router->add('product_single_ddd', '/product/(id:int)/(id2:int)', 'Product
 $this->router->add('p', '/(id:int)/product/(id2:int)', 'ProductController:view');
 
 $this->router->add('about', '/about', 'HomeController:about');
+$this->router->add('animation/perever', '/animation/perever', 'AnimationController:perever');
