@@ -1,27 +1,45 @@
 const path = require('path');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const CopyWebpackPlugin = require('copy-webpack-plugin');
+const { CleanWebpackPlugin } = require("clean-webpack-plugin");
+
+const defaultTheme = __dirname + '/env/client/themes/default/';
+const src = defaultTheme + 'src/';
 
 module.exports = {
     mode: 'development',
     devtool: 'inline-source-map',
-    context: __dirname + '/env/client/themes/default/src/',
     entry: {
-        main: './js/pages/index/index.js',
-        about: './js/pages/about/about.js',
-        'styles-index': './scss/pages/index/index.scss',
+        main: src + './js/pages/index/index.js',
+        about: src + './js/pages/about/about.js',
+        'styles-index': src + './scss/pages/index/index.scss',
 
-        'animation-perever': './js/pages/animation/perever/index.js',
-        'styles-animation-perever': './scss/pages/animation/perever/index.scss',
+        'animation-perever': src + './js/pages/animation/perever/index.js',
+        'styles-animation-perever': src + './scss/pages/animation/perever/index.scss',
+
+        'animation-pixi': defaultTheme + './pages/animation/pixi/js/index.js',
+        'styles-animation-pixi': defaultTheme + './pages/animation/pixi/scss/styles.scss',
     },
     output: {
         filename: '[name].js',
-        path: path.join(__dirname, 'public/client/js')
+        path: path.join(__dirname, 'public/client/js/')
     },
     plugins: [
+        new CleanWebpackPlugin({}),
+
         new MiniCssExtractPlugin({
             filename: "./../css/[name].css"
-        })
-    ].concat(),
+        }),
+
+        new CopyWebpackPlugin([
+            {
+                from: defaultTheme + "./pages/animation/pixi/img",
+                to: "./../img/animation/pixi",
+            },
+        ]),
+
+
+    ],
     module: {
         rules: [
             {

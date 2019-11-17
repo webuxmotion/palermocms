@@ -1,0 +1,18 @@
+body {
+  margin: 0;
+  padding: 0;
+  background-color: black;
+}
+
+.nav {
+  position: absolute;
+  top: 50px;
+  right: 50px;
+  margin: 0;
+  list-style: none;
+
+  a {
+    color: white;
+    font-size: 50px;
+  }
+}
