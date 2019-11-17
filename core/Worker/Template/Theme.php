@@ -12,6 +12,8 @@ class Theme
 
   public $url = '';
   protected $data = [];
+  public $css = [];
+  public $js = [];
 
   public function header($name = null) {
     $name = (string) $name;
@@ -22,6 +24,14 @@ class Theme
     }
 
     $this->loadTemplateFile($file);
+  }
+
+  public function setCss($val) {
+    $this->css = $val;
+  }
+
+  public function setJs($val) {
+    $this->js = $val;
   }
 
   public function footer($name = '') {
@@ -64,5 +74,25 @@ class Theme
 
   public function setData($data) {
     $this->data = $data;
+  }
+
+  public function getCss() {
+    $res = '';
+
+    foreach ($this->css as $item) {
+      $res .= '<link rel="stylesheet" href="' . ENV . '/css/' . $item . '.css" />';
+    }
+
+    return $res;
+  }
+
+  public function getJs() {
+    $res = '';
+
+    foreach ($this->js as $item) {
+      $res .= '<script src="/'.  ENV .'/js/' . $item . '.js"></script>';
+    }
+
+    return $res;
   }
 }

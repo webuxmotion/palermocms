@@ -60,3 +60,17 @@
 ===========
 [2019-11-16 15:13:18] Error text: Call to undefined method Core\Worker\Template\View::block() | File: /var/www/html/env/client/themes/default/pages/index.php | String number: 2
 ===========
+[2019-11-17 05:00:43] Error text: Call to a member function block() on null | File: /var/www/html/env/client/themes/default/pages/index/index.php | String number: 1
+===========
+[2019-11-17 06:14:45] Error text: Call to undefined method Core\Worker\Template\View::css() | File: /var/www/html/env/client/Controller/HomeController.php | String number: 12
+===========
+[2019-11-17 06:18:22] Error text: Function name must be a string | File: /var/www/html/env/client/themes/default/parts/header.php | String number: 5
+===========
+[2019-11-17 06:18:23] Error text: Function name must be a string | File: /var/www/html/env/client/themes/default/parts/header.php | String number: 5
+===========
+[2019-11-17 06:18:28] Error text: Call to undefined function getCss() | File: /var/www/html/env/client/themes/default/parts/header.php | String number: 5
+===========
+[2019-11-17 06:23:35] Error text: Call to a member function render() on null | File: /var/www/html/env/client/Controller/HomeController.php | String number: 14
+===========
+[2019-11-17 06:24:13] Error text: Call to undefined method Core\Worker\Template\View::js() | File: /var/www/html/env/client/Controller/HomeController.php | String number: 14
+===========

@@ -18,6 +18,18 @@ class View
     return $this;
   }
 
+  public function css($val) {
+    $this->theme->setCss($val);
+
+    return $this;
+  }
+
+  public function js($val) {
+    $this->theme->setJs($val);
+
+    return $this;
+  }
+
   public function render($template, $vars = []) {
     $templatePath = ROOT . '/env/' . ENV . '/themes/default/' . $template . '.php'; 
 

@@ -9,6 +9,15 @@ class HomeController extends MainController
       'name' => $this->config['main']['title']
     ];
 
-    $this->view->setLayout('default')->render('pages/index', $data);
+    $this->view
+      ->css(['styles-index'])
+      ->js(['main'])
+      ->render('pages/index/index', $data);
+  }
+
+  public function about() {
+    $this->view
+      ->js(['about'])
+      ->render('pages/about/about');
   }
 }

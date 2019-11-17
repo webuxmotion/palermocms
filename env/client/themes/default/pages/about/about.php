@@ -1,0 +1,1 @@
+<?=$this->theme->block('parts/button', ['title' => 'test']);?>
