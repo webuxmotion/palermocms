@@ -18,7 +18,6 @@ class Starter
 
   public function run() {
     try {
-
       $this->loadRoutes();
 
     } catch (\Exception $e) {
