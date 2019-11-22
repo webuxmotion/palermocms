@@ -1,6 +1,7 @@
 <?php
 
 $this->router->add('home', '/', 'HomeController:index');
+$this->router->add('login', '/api/users/login', 'HomeController:login', 'POST');
 $this->router->add('product', '/user/12', 'ProductController:index');
 $this->router->add('product_single', '/product/(id:int)', 'ProductController:view');
 $this->router->add('product_single_ddd', '/product/(id:int)/(id2:int)', 'ProductController:view');

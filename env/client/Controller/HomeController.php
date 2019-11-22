@@ -16,4 +16,13 @@ class HomeController extends MainController
       ->js(['about'])
       ->render('pages/about/about');
   }
+
+  public function login() {
+    $_POST = json_decode(file_get_contents('php://input'), true);
+    debug($_POST);
+    echo json_encode([
+      "success" => true,
+      "password" => $_POST['password']
+    ], JSON_PRETTY_PRINT);
+  }
 }

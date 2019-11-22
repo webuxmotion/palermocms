@@ -82,3 +82,11 @@
 ===========
 [2019-11-18 09:51:10] Error text: SQLSTATE[HY000] [2002] php_network_getaddresses: getaddrinfo failed: ???? ???? ??????????.  | File: D:\Projects\palermocms\core\Worker\Db\Connection.php | String number: 18
 ===========
+[2019-11-22 19:08:53] Error text: Cannot use object of type Core\Worker\Request\Request as array | File: D:\Projects\palermocms\env\client\Controller\HomeController.php | String number: 23
+===========
+[2019-11-22 19:09:13] Error text: Cannot use object of type Core\Worker\Request\Request as array | File: D:\Projects\palermocms\env\client\Controller\HomeController.php | String number: 23
+===========
+[2019-11-22 19:09:36] Error text: Cannot use object of type Core\Worker\Request\Request as array | File: D:\Projects\palermocms\env\client\Controller\HomeController.php | String number: 21
+===========
+[2019-11-22 19:10:13] Error text: Cannot use object of type Core\Worker\Request\Request as array | File: D:\Projects\palermocms\env\client\Controller\HomeController.php | String number: 21
+===========
